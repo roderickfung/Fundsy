@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.nav-spacing {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}

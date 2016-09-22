@@ -6,29 +6,42 @@
 
 <%= simple_form_for @campaign do |f| %>
 <div class='row'>
-  <div class='col-xs-offset-1 col-sm-offset-1'>
+  <div class='col-xs-offset-1 col-sm-offset-1 col-xs-8 col-sm-8'>
     <%= f.input :title %>
   </div>
 </div>
 <div class='row'>
-  <div class='col-xs-offset-1 col-sm-offset-1'>
+  <div class='col-xs-offset-1 col-sm-offset-1 col-xs-8 col-sm-8'>
     <%= f.input :description, input_html: {rows: 8} %>
   </div>
 </div>
 <div class='row'>
-  <div class='col-xs-offset-1 col-sm-offset-1'>
+  <div class='col-xs-offset-1 col-sm-offset-1 col-xs-8 col-sm-8'>
     <%= f.input :goal %>
   </div>
 </div>
 <div class='row'>
-  <div class='col-xs-offset-1 col-sm-offset-1'>
+  <div class='col-xs-offset-1 col-sm-offset-1 col-xs-8 col-sm-8'>
     <%= f.input :end_date %>
   </div>
 </div>
 
+<div id='rewards'>
+  <%= f.simple_fields_for :rewards do |r| %>
+    <%= render 'reward_fields', f: r %>
+  <%end%>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-8 col-sm-8'>
+      <%=link_to_add_association 'Add Rewards', f, :rewards, class:'btn btn-default col-xs-12 col-sm-12' %>
+    </div>
+  </div>
+</div>
+
+<div style='margin-top: 2rem; margin-bottom: 2rem;'></div>
+
 <div class='row'>
-  <div class='col-xs-offset-1 col-sm-offset-1'>
-    <%= f.submit class: 'btn btn-primary' %>
+  <div class='col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10'>
+    <%= f.submit class: 'btn btn-primary col-xs-12 col-sm-12' %>
   </div>
 </div>
 <%end%>

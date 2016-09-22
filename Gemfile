@@ -31,6 +31,7 @@ gem 'awesome_print'
 gem 'interactive_editor'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
+gem 'cocoon'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

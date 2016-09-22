@@ -1,0 +1,32 @@
+<div class='nested-fields'>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-4 col-sm-4'>
+      <h3>Rewards</h3>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-8 col-sm-8'>
+      <%= f.input :title %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-8 col-sm-8'>
+      <%= f.input :body %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-8 col-sm-8'>
+      <%= f.input :amount %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-8 col-sm-8'>
+      <%=link_to_remove_association 'Remove Rewards', f, class:'btn btn-danger col-xs-12 col-sm-12' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-offset-2 col-sm-offset-2 col-xs-8 col-sm-8'>
+      <hr/>
+    </div>
+  </div>
+</div>
