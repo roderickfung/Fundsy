@@ -67,7 +67,6 @@ RSpec.describe PledgesController, type: :controller do
           invalid_request
           expect(response).to render_template("campaigns/show")
         end
-
       end
 
     end

@@ -29,6 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'simple_form'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
