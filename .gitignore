@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore app_key config
+/config/initializers/app_key.rb
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

@@ -26,12 +26,21 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'hirb'
-gem 'awesome_print'
-gem 'interactive_editor'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
+
 gem 'cocoon'
+gem 'aasm'
+
+#geocoder
+gem 'geocoder'
+
+#gmap
+gem 'gmaps4rails'
+gem 'underscore-rails'
+
+# payments
+gem 'stripe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -46,6 +55,10 @@ group :development, :test do
   gem 'nyan-cat-formatter'
   # gem 'byebug', platform: :mri
   gem 'pry'
+
+  gem 'hirb'
+  gem 'awesome_print'
+  gem 'interactive_editor'
 end
 
 group :development do

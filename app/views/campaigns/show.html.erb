@@ -1,8 +1,38 @@
-<h1><%=@campaign.title%></h1>
+<div class='row'>
+  <div class='col-xs-offset-1 col-sm-offset-1 col-xs-6 col-sm-6'>
+    <h1><%=@campaign.title%></h1>
+  </div>
+  <div class='col-xs-1 col-sm-1'>
+    <div class='label label-info'>
+      <%=@campaign.aasm_state.titleize%>
+    </div>
+  </div>
+</div>
+
+<div class='clearfix'></div>
+
+<h3>Pledge</h3>
+
+<%= simple_form_for [@campaign, @pledge] do |f| %>
+  <%= f.input :amount%>
+  <%= f.submit 'Commit', class:'btn btn-primary'%>
+<%end%>
+
+<div class='page-spacing'></div>
 
 <p>
   <%=@campaign.description%>
 </p>
+
+<div class='clearfix'></div>
+
+<%if @campaign.draft?%>
+  <%=link_to "Publish", campaign_publishings_path(@campaign),
+  class:'label label-info', method: :post, data: {confirm: "Confirm Publishing #{@campaign.title}?"}%>
+<%#elsif @campaign.publish?%>
+<%end%>
+
+<div class='clearfix'></div>
 
 <% @campaign.rewards.each do |reward| %>
   <div class='well col-xs-4 col-sm-4'>
@@ -13,3 +43,28 @@
     <%=number_to_currency(reward.amount)%>
   </div>
 <%end%>
+
+<div style='width: 800px'>
+  <div id='map' style='width: 800px; height: 400px;'></div>
+</div>
+
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": <%=@campaign.latitude%>,
+        "lng": <%=@campaign.longitude%>,
+        "picture": {
+          "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+          "width":  32,
+          "height": 32
+        },
+        "infowindow": "hello!"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(15);
+  });
+</script>

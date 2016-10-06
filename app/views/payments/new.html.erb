@@ -1,0 +1,61 @@
+<h1>Payment for <%=number_to_currency(@pledge.amount)%></h1>
+
+<%= form_tag pledge_payments_path(@pledge),  id:'server-form' do%>
+
+  <%= hidden_field_tag :stripe_token %>
+
+<%end%>
+
+<%= form_tag '', id: 'payment-form' do %>
+  <div class='payment-errors'></div>
+
+  <div class='row form-group'>
+    <div class='col-sm-offset-1 col-sm-2'>
+      <%= label_tag :card_number, nil, class: 'control-label' %>
+    </div>
+    <div class='col-sm-4'>
+      <%= text_field_tag :card_number, nil, { class: 'form-control',
+                                              data: {stripe: 'number'}
+                                            }%>
+    </div>
+  </div>
+
+  <div class='row form-group'>
+    <div class='col-sm-offset-1 col-sm-2'>
+      <%= label_tag :expiration, "Expiration (MM/YY)", class: 'control-label' %>
+    </div>
+    <div class='col-sm-1'>
+      <span class='span6'>
+        <%= text_field_tag :expiration, nil, {  class: 'form-control',
+                                                data: {stripe: 'exp_month'},
+                                                size: 2
+                                              }%>
+      </span>
+      <span class='span6'>
+        <%= text_field_tag :expiration, nil, {  class: 'form-control',
+                                                data: {stripe: 'exp_year'},
+                                                size: 2
+                                              }%>
+      </span>
+    </div>
+  </div>
+
+  <div class='row form-group'>
+    <div class='col-sm-offset-1 col-sm-2'>
+      <%= label_tag :CVC, 'CVC', class: 'control-label' %>
+    </div>
+    <div class='col-sm-1'>
+      <%= text_field_tag :cvc, nil, {  class: 'form-control',
+                                              data: {stripe: 'cvc'},
+                                              size: 4
+                                            }%>
+    </div>
+  </div>
+
+  <div class='row form-group'>
+    <div class='col-sm-offset-3 col-sm-2'>
+      <%= submit_tag 'Submit', class: 'btn btn-primary'%>
+    </div>
+  </div>
+
+<%end%>

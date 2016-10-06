@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922203636) do
+ActiveRecord::Schema.define(version: 20161006210542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,20 @@ ActiveRecord::Schema.define(version: 20160922203636) do
     t.datetime "end_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "aasm_state"
+    t.string   "address"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.index ["aasm_state"], name: "index_campaigns_on_aasm_state", using: :btree
   end
 
   create_table "pledges", force: :cascade do |t|
     t.integer  "amount"
     t.integer  "user_id"
     t.integer  "campaign_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "stripe_transaction_id"
     t.index ["campaign_id"], name: "index_pledges_on_campaign_id", using: :btree
     t.index ["user_id"], name: "index_pledges_on_user_id", using: :btree
   end
@@ -49,8 +55,9 @@ ActiveRecord::Schema.define(version: 20160922203636) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "stripe_customer_id"
   end
 
   add_foreign_key "pledges", "campaigns"

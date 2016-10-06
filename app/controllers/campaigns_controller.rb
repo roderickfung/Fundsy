@@ -10,6 +10,7 @@ class CampaignsController < ApplicationController
     :title,
     :description,
     :goal,
+    :address,
     :end_date,
     {rewards_attributes: [:title, :body, :amount, :_destroy, :id]}
     )
@@ -21,12 +22,27 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def index
+    @campaigns = Campaign.all.order(created_at: :desc)
+  end
+
   def show
     @campaign = Campaign.find params[:id]
+    @pledge = Pledge.new
   end
 
   def index
-    @campaigns = Campaign.order(:created_at)
+    if params[:lat]
+      @campaigns = Campaign.near([params[:lat], params[:lng]], 50, units: :km)
+    else
+      @campaigns = Campaign.where.not(latitude: nil, longitude:nil).order(:created_at)
+    end
+    @markers = Gmaps4rails.build_markers(@campaigns) do |c, m|
+      m.lat        c.latitude
+      m.lng        c.longitude
+      m.infowindow c.title
+    end
+    # ^ |campaign, marker|
   end
 
   def destroy

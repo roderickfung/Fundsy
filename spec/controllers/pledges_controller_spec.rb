@@ -11,6 +11,7 @@ RSpec.describe PledgesController, type: :controller do
 
   describe "#create" do
     context "with no signed in user" do
+      
       it "redirects to root path" do
         post :create, params: {amount: 10, campaign_id: campaign.id}
         expect(response).to redirect_to root_path
